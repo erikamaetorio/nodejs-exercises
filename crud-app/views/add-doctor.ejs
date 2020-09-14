@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title><%= title %></title>
+</head>
+<style>
+  .table-wrapper {
+      margin-top: 50px;
+  }
+
+  .player-img {
+      width: 40px;
+      height: 40px;
+  }
+
+  .add-player-form {
+      margin-top: 50px;
+  }
+</style>
+<body>
+<div class="page-wrapper">
+  <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1" ><a href="/">Seattle Grace Hospital</a></span>
+      <a class="float-right" href="/add" title="Add a New Player">Add a Doctor</a>
+  </nav>
+    <div class="container">
+        <% if (message != '') { %>
+            <p class="text-center text-danger"><%= message %></p>
+        <% } %>
+        <form class="add-player-form" action="/addDoctor" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="first_name" id="first-name" placeholder="First Name" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="last_name" id="last-name" placeholder="Last Name" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <select id="specialty" name="specialty" class="form-control" required>
+                    <option selected disabled>Choose specialty</option>
+                    <option>Cardiothoracics</option>
+                    <option>General Surgery</option>
+                    <option>Neurosurgery</option>
+                    <option>Plastics</option>
+                    <option>Pediatrics</option>
+                    <option>Orthopedic Surgery</option>
+                </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <select id="position" name="position" class="form-control" required>
+                        <option selected disabled>Choose position</option>
+                        <option>Intern</option>
+                        <option>Resident</option>
+                        <option>Attending</option>
+                        <option>Chief</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <label for="player-img"><b>Doctor Image</b></label><br>
+                    <input type="file" name="fileUploaded" id="player-img" class="" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Add Doctor</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
