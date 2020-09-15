@@ -8,7 +8,7 @@
 </head>
 <style>
   .table-wrapper {
-      margin-top: 50px;
+      margin-top: 10px;
   }
 
   .player-img {
@@ -55,8 +55,8 @@
                             <td><%= doctor.specialty %></td>
                             <td>@<%= doctor.username %></td>
                             <td>
-                                <a href="/edit/<%= doctor.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
-                                <a href="/delete/<%= doctor.id %>" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="/doctors/edit/<%= doctor.d_id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                                <a href="/doctors/delete/<%= doctor.d_id %>" class="btn btn-sm btn-danger">Delete</a>
                             </td>
                         </tr>
                     <% }) %>
@@ -78,7 +78,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="add-player-form" action="/add" method="post" enctype="multipart/form-data">
+            <form class="add-player-form" action="/doctors/add" method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <input type="text" class="form-control" name="first_name" id="first-name" placeholder="First Name" required>

@@ -25,54 +25,65 @@ sghdb.all = () => {
 sghdb.add = (fname, lname, position, specialty, imagename, username) => {
   let q = "INSERT INTO doctors (first_name, last_name, position, specialty, image, username) VALUES ('"+fname+"', '"+lname+"', '"+position+"', '"+specialty+ "', '" +imagename+ "', '" +username+ "')";
 
-  conn.query(q, (err, result) => {
-    if(err) {
-      return reject(err);
-    }
+  return new Promise((resolve, reject) => {
+    conn.query(q, (err, result) => {
+      if(err) {
+        return reject(err);
+      }
+      return resolve(result[0]);
+    });
   });
 };
 
 sghdb.edit = (id, fname, lname, position, specialty) => {
-  let q = "UPDATE `players` SET `first_name` = '" +fname+ "', `last_name` = '" +lname+ "', `position` = '"+position+ "', `specialty` = '" +specialty+"' WHERE `doctors`.`d_id` = '" +id+ "'";
+  let q = "UPDATE `doctors` SET `first_name` = '" +fname+ "', `last_name` = '" +lname+ "', `position` = '"+position+ "', `specialty` = '" +specialty+"' WHERE `doctors`.`d_id` = '" +id+ "'";
   
-  conn.query(q, (err, result) => {
-    if(err) {
-      return reject(err);
-    }
-    return resolve(result[0]);
+  return new Promise((resolve, reject) => {
+    conn.query(q, (err, result) => {
+      if(err) {
+        return reject(err);
+      }
+      return resolve(result[0]);
+    });
   });
 };
 
 sghdb.delete = (id) => {
-  let q = 'DELETE FROM players WHERE d_id = "'+id+'"';
+  let q = 'DELETE FROM doctors WHERE d_id = "'+id+'"';
 
-  conn.query(q, (err, result) => {
-    if(err) {
-      return reject(err);
-    }
-    return resolve(result[0]);
+  return new Promise((resolve, reject) => {
+    conn.query(q, (err, result) => {
+      if(err) {
+        return reject(err);
+      }
+      return resolve(result[0]);
+    });
   });
 };
 
 sghdb.one = (id) => {
-  let q = 'SELECT * FROM `doctors` WHERE d_id ="'+id+'"'; 
+  let q = 'SELECT * FROM `doctors` WHERE d_id ="'+id+'"';
 
-  conn.query(q, (err, result) => {
-    if(err) {
-      return reject(err);
-    }
-    return resolve(result[0]);
+  return new Promise((resolve, reject) => {
+    conn.query(q, (err, result) => {
+      if(err) {
+        return reject(err);
+      }
+      return resolve(result[0]);
+    });
   });
 };
 
 sghdb.find = (username) => {
   let q = 'SELECT * FROM doctors WHERE username="'+username+'"';
 
-  conn.query(q, (err, result) => {
-    if(err) {
-      return reject(err);
-    }
-    return resolve(result);
+  return new Promise((resolve, reject) => {
+    conn.query(q, (err, result) => {
+      if(err) {
+        return reject(err);
+      }
+      return resolve(result[0]);
+    });
   });
 }
 

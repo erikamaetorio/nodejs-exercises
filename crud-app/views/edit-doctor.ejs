@@ -1,29 +1,59 @@
-<% include partials/header.ejs %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title><%= title %></title>
+</head>
+<style>
+  .table-wrapper {
+      margin-top: 50px;
+  }
+
+  .player-img {
+      width: 40px;
+      height: 40px;
+  }
+
+  .add-player-form {
+      margin-top: 50px;
+  }
+</style>
+<body>
+<div class="page-wrapper">
+  <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1" ><a href="/">Seattle Grace Hospital</a></span>
+      <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDoctorModal">
+            Add a new Doctor
+        </button>
+  </nav>
 <div class="container">
     <% if (message) { %>
         <p class="text-center text-danger"><%= message %></p>
     <% } %>
 
-    <% if (player) { %>
-        <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+    <% if (doctor) { %>
+        <form class="add-player-form" action="/doctors/edit/:id" method="put" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="first-name">First Name</label>
-                    <input type="text" class="form-control" name="first_name" id="first-name" value="<%= player.first_name %>" required>
+                    <input type="text" class="form-control" name="first_name" id="first-name" value="<%= doctor.first_name %>" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="last-name">Last Name</label>
-                    <input type="text" class="form-control" name="last_name" id="last-name" value="<%= player.last_name %>" required>
+                    <input type="text" class="form-control" name="last_name" id="last-name" value="<%= doctor.last_name %>" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" name="username" id="username" value="<%= player.user_name %>" required disabled title="Username cannot be edited.">
+                    <input type="text" class="form-control" name="username" id="username" value="<%= doctor.username %>" required disabled title="Username cannot be edited.">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="number">Specialty</label>
-                    <select id="position" name="position" class="form-control" required>
+                    <select id="specialty" name="specialty" class="form-control" required>
                       <option selected disabled>Choose specialty</option>
                       <option>Cardiothoracics</option>
                       <option>General Surgery</option>
