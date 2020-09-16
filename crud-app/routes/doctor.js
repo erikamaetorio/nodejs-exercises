@@ -39,7 +39,7 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 router
   .route('/add')
-  .post(upload.single("image"), async (req, res, next) => {
+  .post(upload.single("image"), authenticateToken, async (req, res, next) => {
     let message = "";
     let first_name = req.body.first_name;
     let last_name = req.body.last_name;
